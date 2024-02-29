@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'utils.dart';
+import 'widgets/timer_card.dart';
 
 class PomodoroScreen extends StatelessWidget {
   const PomodoroScreen({super.key});
@@ -33,7 +34,8 @@ class PomodoroScreen extends StatelessWidget {
               child: const Column(children: [
                 SizedBox(
                   height: 15,
-                )
+                ),
+                TimerCard(),
               ]))),
     );
   }
