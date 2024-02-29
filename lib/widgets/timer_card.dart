@@ -45,7 +45,7 @@ class TimerCard extends StatelessWidget {
                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 4, blurRadius: 4, offset: Offset(0, 2))]),
               child: Center(
                 child: Text(
-                  '30',
+                  '00',
                   style: textStyle(70, Colors.redAccent, FontWeight.w700),
                 ),
               ),
