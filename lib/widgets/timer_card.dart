@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utils.dart';
+import 'timer_service.dart';
 
 class TimerCard extends StatelessWidget {
   const TimerCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context);
+    final seconds = provider.currentDuration % 60;
     return Column(
       children: [
         Text(
@@ -26,7 +30,7 @@ class TimerCard extends StatelessWidget {
                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 4, blurRadius: 4, offset: const Offset(0, 2))]),
               child: Center(
                 child: Text(
-                  '30',
+                  '${provider.currentDuration ~/ 60}',
                   style: textStyle(70, Colors.redAccent, FontWeight.w700),
                 ),
               ),
@@ -45,7 +49,11 @@ class TimerCard extends StatelessWidget {
                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 4, blurRadius: 4, offset: Offset(0, 2))]),
               child: Center(
                 child: Text(
-                  '00',
+                  seconds == 0
+                      ? '00'
+                      : seconds < 10
+                          ? '0${seconds.round()}'
+                          : '${seconds.round()}',
                   style: textStyle(70, Colors.redAccent, FontWeight.w700),
                 ),
               ),
