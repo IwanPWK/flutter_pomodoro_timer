@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../global_variables.dart';
 import '../utils.dart';
 import 'timer_service.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +11,10 @@ class TimeOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+    // ScrollController scrollController = ScrollController(initialScrollOffset: 320);
+
     return SingleChildScrollView(
-        controller: ScrollController(initialScrollOffset: 320),
+        controller: scrollController,
         scrollDirection: Axis.horizontal,
         child: Row(
             children: selectableTimes.map((time) {

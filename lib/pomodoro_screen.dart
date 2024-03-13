@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'global_variables.dart';
 import 'utils.dart';
 import 'widgets/progress_widget.dart';
 import 'widgets/time_controller.dart';
@@ -14,6 +15,7 @@ class PomodoroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+    // ScrollController scrollController = ScrollController();
     return Scaffold(
       backgroundColor: renderColor(provider.currentState),
       appBar: AppBar(
@@ -30,7 +32,12 @@ class PomodoroScreen extends StatelessWidget {
               color: Colors.white,
             ),
             iconSize: 40,
-            onPressed: () {},
+            onPressed: () {
+              if (provider.timer != null) {
+                provider.reset();
+                scrollController.jumpTo(320);
+              }
+            },
           )
         ],
       ),
