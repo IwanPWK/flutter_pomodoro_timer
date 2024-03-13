@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class TimerService extends ChangeNotifier {
   late Timer timer;
-  double currentDuration = 1800;
-  double selectedTime = 1800;
+  double currentDuration = 10;
+  double selectedTime = 10;
   bool timerPlaying = false;
   int rounds = 0;
   int goal = 0;
@@ -35,26 +35,26 @@ class TimerService extends ChangeNotifier {
   }
 
   void handleNextRound() {
-    if (currentState == "FOCUS") {
+    if (currentState == "FOCUS" && rounds < 3) {
       currentState = "BREAK";
-      currentDuration = 300;
-      selectedTime = 300;
+      currentDuration = 10;
+      selectedTime = 10;
       rounds++;
       goal++;
     } else if (currentState == "BREAK") {
       currentState = "FOCUS";
-      currentDuration = 1500;
-      selectedTime = 1500;
+      currentDuration = 10;
+      selectedTime = 10;
     } else if (currentState == "FOCUS" && rounds == 3) {
       currentState = "LONGBREAK";
-      currentDuration = 1500;
-      selectedTime = 1500;
+      currentDuration = 10;
+      selectedTime = 10;
       rounds++;
       goal++;
     } else if (currentState == "LONGBREAK") {
       currentState = "FOCUS";
-      currentDuration = 1500;
-      selectedTime = 1500;
+      currentDuration = 10;
+      selectedTime = 10;
       rounds = 0;
     }
     notifyListeners();
