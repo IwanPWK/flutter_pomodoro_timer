@@ -10,6 +10,7 @@ class TimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+    final minutes = provider.currentDuration ~/ 60;
     final seconds = provider.currentDuration % 60;
     return Column(
       children: [
@@ -30,15 +31,19 @@ class TimerCard extends StatelessWidget {
                   boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), spreadRadius: 4, blurRadius: 4, offset: const Offset(0, 2))]),
               child: Center(
                 child: Text(
-                  '${provider.currentDuration ~/ 60}',
-                  style: textStyle(70, Colors.redAccent, FontWeight.w700),
+                  minutes == 0
+                      ? '00'
+                      : minutes < 10
+                          ? '0$minutes'
+                          : minutes.toString(),
+                  style: textStyle(70, renderColor(provider.currentState), FontWeight.w700),
                 ),
               ),
             ),
             const SizedBox(
               width: 10,
             ),
-            Text(":", style: textStyle(60, Colors.red[200], FontWeight.bold)),
+            Text(":", style: textStyle(60, Colors.white, FontWeight.bold)),
             const SizedBox(width: 10),
             Container(
               width: MediaQuery.of(context).size.width / 3.2,
@@ -54,7 +59,7 @@ class TimerCard extends StatelessWidget {
                       : seconds < 10
                           ? '0${seconds.round()}'
                           : '${seconds.round()}',
-                  style: textStyle(70, Colors.redAccent, FontWeight.w700),
+                  style: textStyle(70, renderColor(provider.currentState), FontWeight.w700),
                 ),
               ),
             ),

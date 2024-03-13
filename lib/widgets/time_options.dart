@@ -29,7 +29,7 @@ class TimeOptions extends StatelessWidget {
               child: Center(
                 child: Text(
                   (int.parse(time) ~/ 60).toString(),
-                  style: textStyle(25, int.parse(time) == provider.selectedTime ? Colors.redAccent : Colors.white, FontWeight.w700),
+                  style: textStyle(25, int.parse(time) == provider.selectedTime ? renderColor(provider.currentState) : Colors.white, FontWeight.w700),
                 ),
               ),
             ),
